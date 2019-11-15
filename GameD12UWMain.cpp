@@ -8,8 +8,7 @@
 #include"Common/StepTimer.h"
 //#include "MyMouse.h"
 
-#pragma comment(lib, "C:\\Users\\hot3dx-home\\Source\\Repos\\GameD12UW\\DirectXTK12\\Bin\\Windows10_2019\\x64\\Debug\\DirectXTK12.lib")
-//#pragma comment(lib, "C:\\Users\\hot3dx-home\\Downloads\\mining\\XboxSamples\\Samples\\Kits\\DirectXTK12\\Bin\\Desktop_2017_Win10\\x64\\Debug\\DirectXTK12.lib")
+#pragma comment(lib, "..\\..\\..\\..\\..\\GameD12UW\\DirectXTK12\\Bin\\Windows10_2019\\x64\\Debug\\DirectXTK12.lib")
 
 extern void ExitGameD12UW();
 
