@@ -26,6 +26,8 @@ Have Fun!!!
 
 Escape Button Should also shut'er off!
 
+
+
 # Direct3D Game VS project templates
 This repo contains simplified Visual C++ project templates. They are primarily intended for developer education, samples, and tutorials.
 
