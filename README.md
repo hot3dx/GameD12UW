@@ -5,6 +5,23 @@ The DirectXTK12 lib is not from the XDK so I have included it
 Make Certain the build order is DirectXTK12 first!!!!
 This is the DeviceResources Universal Windows Platform version
 
+There are two  projects!!!!!
+1) GameD12UW is dependent on:
+2) DirectXTK12 Solution and project files in the DXTK12 folder!!!
+
+
+In order to build and run the projects:
+1) Set the build dependencies so that GameD12Uw is dependent on 
+2) the DirectXTK12
+
+The #pragma comment(lib, L"C:..\..\.. ... \GameD12UW\DXTK12\..\ must be correctly set before the prject will run
+When you build, the path will show before DirectXTK12.lib!!!!!
+make certain that path is in the #pramga comment(lib, "..\..\..\..\..\ here\DirectXTK12.lib);
+
+The build order should be set to DirectxTK12
+
+There may be problems with the Segoeui.ttf, segoui.spritefont, ADPCMdroid.xwb, tinymeshmesh.sdkmesh files not automatically going to the correct directories! they shoould work where they are at but...put them in the right directories and voila!!!
+
 Have Fun!!!
 
 Escape Button Should also shut'er off!
