@@ -18,6 +18,11 @@ The #pragma comment(lib, L"C:..\..\.. ... \GameD12UW\DXTK12\..\ must be correctl
 When you build, the path will show before DirectXTK12.lib!!!!!
 make certain that path is in the #pramga comment(lib, "..\..\..\..\..\ here\DirectXTK12.lib);
 
+// The path must be correct in order for it all to work
+// Add a reference by right clicking the project. The DXTK12 should showup, check the box 
+// Hit Okay, else: click the browse button find where you put the DirectXTK12 project
+// Check the box. The paths in pch.h will need to be changed to match the DirectXTK12 location
+
 The build order should be set to DirectxTK12
 
 There may be problems with the Segoeui.ttf, segoui.spritefont, ADPCMdroid.xwb, tinymeshmesh.sdkmesh files not automatically going to the correct directories! they shoould work where they are at but...put them in the right directories and voila!!!
