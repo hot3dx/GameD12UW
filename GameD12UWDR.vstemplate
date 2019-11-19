@@ -32,7 +32,6 @@
       <ProjectItem ReplaceParameters="false" TargetFileName="StepTimer.h">COMMON\StepTimer.h</ProjectItem>
       <ProjectItem ReplaceParameters="false" TargetFileName="DeviceResources12.cpp">COMMON\DeviceResources12.cpp</ProjectItem>
       <ProjectItem ReplaceParameters="false" TargetFileName="DeviceResources12.h">COMMON\DeviceResources12.h</ProjectItem>
-      <Folder Name="Assets" TargetFolderName="Assets">
         <ProjectItem ReplaceParameters="false" TargetFileName="LockScreenLogo.scale-200.png">ASSETS\LockScreenLogo.scale-200.png</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="Logo.png">ASSETS\Logo.png</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="Logo.scale-200.png">ASSETS\Logo.scale-200.png</ProjectItem>
@@ -57,8 +56,7 @@
         <ProjectItem ReplaceParameters="false" TargetFileName="Tiny_skin.dds">ASSETS\Tiny_skin.dds</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="WideLogo.scale-200.png">ASSETS\WideLogo.scale-200.png</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="windowslogo.dds">ASSETS\windowslogo.dds</ProjectItem>
-      </Folder>
-      <ProjectItem ReplaceParameters="false" TargetFileName="SamplePixelShader.hlsl">CONTENT\SamplePixelShader.hlsl</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="SamplePixelShader.hlsl">CONTENT\SamplePixelShader.hlsl</ProjectItem>
       <ProjectItem ReplaceParameters="false" TargetFileName="SampleVertexShader.hlsl">CONTENT\SampleVertexShader.hlsl</ProjectItem>
       <ProjectItem ReplaceParameters="false" TargetFileName="ShaderStructures.h">CONTENT\ShaderStructures.h</ProjectItem>
       <ProjectItem ReplaceParameters="false" TargetFileName="GameD12UWMain.cpp">GameD12UWMain.cpp</ProjectItem>
