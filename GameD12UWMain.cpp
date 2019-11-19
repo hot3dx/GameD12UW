@@ -9,7 +9,9 @@
 
 // This is the must have path which when you build yours, check the DirectXTK.lib line for the correct path and put it in here
 // It save a ton of link erors you can't figure out until you have this correct and WOW!!!!
-#pragma comment(lib, "..\\..\\..\\..\\..\\GameD12UW\\DirectXTK12\\Bin\\Windows10_2019\\x64\\Debug\\DirectXTK12.lib")
+//#pragma comment(lib, "..\\..\\..\\..\\..\\GameD12UW\\DirectXTK12\\Bin\\Windows10_2019\\x64\\Debug\\DirectXTK12.lib")
+// This was left but a reference can be added to the DirectXTK12 by right clicking this project, 
+// choosing from the menu: Add, then Reference, and Selecting the DirectXTK12 checkbox, OK
 
 extern void ExitGameD12UW();
 
