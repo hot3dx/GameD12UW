@@ -31,6 +31,25 @@ Have Fun!!!
 
 Escape Button Should also shut'er off!
 
+A template can be easily made from this code of two projects
+
+1) For Visual Studio 2019 delete  the file GameD12UW.vstemplate
+2) Click the DirectXTK12 project
+    a) Right click Projects
+    b) Choose Export Template
+    c) Use the __Template.ico and GamD12UW.png files in the Assets folder for Icon and Preview Image
+    d) Hit Okay
+    e) The DirectXTK12.zip will show up in Visual Studio 2019/My Exported Templaates/ DirectXTK12.zip
+   
+3) Click the GameD12UW project
+    a) Right click Projects
+    b) Choose Export Template
+    c) Use the __Template.ico and GamD12UW.png files in the Assets folder for Icon and Preview Image
+    d) Hit Okay
+    e) The GameD12UW.zip will show up in Visual Studio 2019/My Exported Templaates/GameD12UW.zip
+    
+4) Both projects will show as templates when creating a new project ad the DirectXTK12 first!
+
 
 
 # Direct3D Game VS project templates
