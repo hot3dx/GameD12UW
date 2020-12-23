@@ -1,6 +1,8 @@
-Visual Studio 2019 - 16.3.9, Latest Upgrades, OS Build 1903, Tools 142
-Upgraded by Hot3dx - Jeff Kubitz for x64
-The build will run in Debug x64 Native Only
+12/23/2020 Base Sample upon which all DirectXToolkit12 samples can be run with error corrections in the DirectXTK12
+Visual Studio 2019 - 16.8.2, Latest Upgrades, OS Build 20H2, Tools 142, C++ 17, C-17
+Upgraded by Hot3dx - Jeff Kubitz for x64, Win32
+The build will run in Release and Debug x64 Native Only
+The build will run in Release and Debug Win32 Native Only
 The DirectXTK12 lib is not from the XDK so I have included it
 Make Certain the build order is DirectXTK12 first!!!!
 This is the DeviceResources Universal Windows Platform version
@@ -11,12 +13,71 @@ There are two  projects!!!!!
 
 
 In order to build and run the projects:
+A should all be set correctly now!
 1) Set the build dependencies so that GameD12Uw is dependent on 
 2) the DirectXTK12
 
-The #pragma comment(lib, L"C:..\..\.. ... \GameD12UW\DXTK12\..\ must be correctly set before the prject will run
-When you build, the path will show before DirectXTK12.lib!!!!!
-make certain that path is in the #pramga comment(lib, "..\..\..\..\..\ here\DirectXTK12.lib);
+For DirectX12 Capable Cards
+
+Code Lines 751 - 762 DeviceResources12.cpp
+
+#if !defined(NDEBUG)
+	if (!adapter)
+	{
+		// Try WARP12 instead
+		if (FAILED(m_dxgiFactory->EnumWarpAdapter(IID_PPV_ARGS(adapter.ReleaseAndGetAddressOf()))))
+		{
+			throw std::exception("WARP12 not available. Enable the 'Graphics Tools' optional feature");
+		}
+
+		OutputDebugStringA("Direct3D Adapter - WARP12\n");
+	}
+#endif
+
+If you have and Intel HD Graphics Card 
+Code Lines 764 - 775 DeviceResources12.cpp below
+are required in addition to the above lines x64 and Win32 Debug and Release!
+This enables the warpadapter:
+
+#if !defined(_DEBUG)
+	if (!adapter)
+	{
+		// Try WARP12 instead
+		if (FAILED(m_dxgiFactory->EnumWarpAdapter(IID_PPV_ARGS(adapter.ReleaseAndGetAddressOf()))))
+		{
+			throw std::exception("WARP12 not available. Enable the 'Graphics Tools' optional feature");
+		}
+
+		OutputDebugStringA("Direct3D Adapter - WARP12\n");
+	}
+#endif
+
+#if !defined(NDEBUG)
+	if (!adapter)
+	{
+		// Try WARP12 instead
+		if (FAILED(m_dxgiFactory->EnumWarpAdapter(IID_PPV_ARGS(adapter.ReleaseAndGetAddressOf()))))
+		{
+			throw std::exception("WARP12 not available. Enable the 'Graphics Tools' optional feature");
+		}
+
+		OutputDebugStringA("Direct3D Adapter - WARP12\n");
+	}
+#endif
+
+#if !defined(_DEBUG)
+	if (!adapter)
+	{
+		// Try WARP12 instead
+		if (FAILED(m_dxgiFactory->EnumWarpAdapter(IID_PPV_ARGS(adapter.ReleaseAndGetAddressOf()))))
+		{
+			throw std::exception("WARP12 not available. Enable the 'Graphics Tools' optional feature");
+		}
+
+		OutputDebugStringA("Direct3D Adapter - WARP12\n");
+	}
+#endif
+When you build, the paths are properly upgraded
 
 // The path must be correct in order for it all to work
 // Add a reference by right clicking the project. The DXTK12 should showup, check the box 
