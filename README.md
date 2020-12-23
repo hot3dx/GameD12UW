@@ -11,6 +11,7 @@ There are two  projects!!!!!
 1) GameD12UW is dependent on:
 2) DirectXTK12 Solution and project files in the DXTK12 folder!!!
 
+Nuget Package WinPixEventRuntime.1.0.200127001 required! (pix3.h)
 
 In order to build and run the projects:
 A should all be set correctly now!
