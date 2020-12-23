@@ -117,7 +117,7 @@ void DeviceResources12::CreateDeviceResources()
 	// NOTE: Enabling the debug layer after device creation will invalidate the active device.
 	{
 		ComPtr<ID3D12Debug> debugController;
-		if (SUCCEEDED(D3D12GetDebugInterface(IID_PPV_ARGS(&debugController))))
+		if (SUCCEEDED(D3D12GetDebugInterface(IID_PPV_ARGS(debugController.GetAddressOf()))))
 		{
 			debugController->EnableDebugLayer();
 		}
@@ -127,7 +127,7 @@ void DeviceResources12::CreateDeviceResources()
 		}
 
 		ComPtr<IDXGIInfoQueue> dxgiInfoQueue;
-		if (SUCCEEDED(DXGIGetDebugInterface1(0, IID_PPV_ARGS(&dxgiInfoQueue))))
+		if (SUCCEEDED(DXGIGetDebugInterface1(0, IID_PPV_ARGS(dxgiInfoQueue.GetAddressOf()))))
 		{
 			m_dxgiFactoryFlags = DXGI_CREATE_FACTORY_DEBUG;
 
@@ -403,7 +403,7 @@ void DeviceResources12::CreateWindowSizeDependentResources()
 	// and create render target views for each of them.
 	for (UINT n = 0; n < m_backBufferCount; n++)
 	{
-		ThrowIfFailed(m_swapChain->GetBuffer(n, IID_PPV_ARGS(&m_renderTargets[n])));
+		ThrowIfFailed(m_swapChain->GetBuffer(n, IID_PPV_ARGS(m_renderTargets[n].GetAddressOf())));
 
 		wchar_t name[25] = {};
 		swprintf_s(name, L"Render target %u", n);
@@ -518,7 +518,7 @@ void DeviceResources12::ValidateDevice()
 	DXGI_ADAPTER_DESC previousDesc;
 	{
 		ComPtr<IDXGIAdapter1> previousDefaultAdapter;
-		ThrowIfFailed(m_dxgiFactory->EnumAdapters1(0, &previousDefaultAdapter));
+		ThrowIfFailed(m_dxgiFactory->EnumAdapters1(0, previousDefaultAdapter.GetAddressOf()));
 
 		ThrowIfFailed(previousDefaultAdapter->GetDesc(&previousDesc));
 	}
@@ -526,10 +526,10 @@ void DeviceResources12::ValidateDevice()
 	DXGI_ADAPTER_DESC currentDesc;
 	{
 		ComPtr<IDXGIFactory4> currentFactory;
-		ThrowIfFailed(CreateDXGIFactory2(m_dxgiFactoryFlags, IID_PPV_ARGS(&currentFactory)));
+		ThrowIfFailed(CreateDXGIFactory2(m_dxgiFactoryFlags, IID_PPV_ARGS(currentFactory.GetAddressOf())));
 
 		ComPtr<IDXGIAdapter1> currentDefaultAdapter;
-		ThrowIfFailed(currentFactory->EnumAdapters1(0, &currentDefaultAdapter));
+		ThrowIfFailed(currentFactory->EnumAdapters1(0, currentDefaultAdapter.GetAddressOf()));
 
 		ThrowIfFailed(currentDefaultAdapter->GetDesc(&currentDesc));
 	}
@@ -619,9 +619,7 @@ void DeviceResources12::Present(D3D12_RESOURCE_STATES beforeState)
 
 	// Send the command list off to the GPU for processing.
 	ThrowIfFailed(m_commandList->Close());
-	ID3D12CommandList* ppCommandLists[] = { m_commandList.Get() };
-	m_commandQueue->ExecuteCommandLists(_countof(ppCommandLists), ppCommandLists);
-
+	m_commandQueue->ExecuteCommandLists(1, CommandListCast(m_commandList.GetAddressOf()));
 
 	HRESULT hr;
 	if (m_options & c_AllowTearing)
@@ -707,6 +705,7 @@ void DeviceResources12::MoveToNextFrame()
 // If no such adapter can be found, try WARP. Otherwise throw an exception.
 void DeviceResources12::GetAdapter(IDXGIAdapter1** ppAdapter)
 {
+	
 	*ppAdapter = nullptr;
 
 	ComPtr<IDXGIAdapter1> adapter;
@@ -732,8 +731,10 @@ void DeviceResources12::GetAdapter(IDXGIAdapter1** ppAdapter)
 				continue;
 			}
 
+			HRESULT hrt = D3D12CreateDevice(adapter.Get(), m_d3dMinFeatureLevel, _uuidof(ID3D12Device), nullptr);
 			// Check to see if the adapter supports Direct3D 12, but don't create the actual device yet.
-			if (SUCCEEDED(D3D12CreateDevice(adapter.Get(), m_d3dMinFeatureLevel, _uuidof(ID3D12Device), nullptr)))
+			//if (SUCCEEDED(D3D12CreateDevice(adapter.Get(), m_d3dMinFeatureLevel, _uuidof(ID3D12Device), nullptr)))
+			if(hrt == S_OK)
 			{
 #ifdef _DEBUG
 				wchar_t buff[256] = {};
@@ -745,37 +746,22 @@ void DeviceResources12::GetAdapter(IDXGIAdapter1** ppAdapter)
 		}
 	}
 #endif
-	if (!adapter)
-	{
-		for (UINT adapterIndex = 0;
-			SUCCEEDED(m_dxgiFactory->EnumAdapters1(
-				adapterIndex,
-				adapter.ReleaseAndGetAddressOf()));
-			++adapterIndex)
-		{
-			DXGI_ADAPTER_DESC1 desc;
-			ThrowIfFailed(adapter->GetDesc1(&desc));
-
-			if (desc.Flags & DXGI_ADAPTER_FLAG_SOFTWARE)
-			{
-				// Don't select the Basic Render Driver adapter.
-				continue;
-			}
-
-			// Check to see if the adapter supports Direct3D 12, but don't create the actual device yet.
-			if (SUCCEEDED(D3D12CreateDevice(adapter.Get(), m_d3dMinFeatureLevel, _uuidof(ID3D12Device), nullptr)))
-			{
-#ifdef _DEBUG
-				wchar_t buff[256] = {};
-				swprintf_s(buff, L"Direct3D Adapter (%u): VID:%04X, PID:%04X - %ls\n", adapterIndex, desc.VendorId, desc.DeviceId, desc.Description);
-				OutputDebugStringW(buff);
-#endif
-				break;
-			}
-		}
-	}
+				
 
 #if !defined(NDEBUG)
+	if (!adapter)
+	{
+		// Try WARP12 instead
+		if (FAILED(m_dxgiFactory->EnumWarpAdapter(IID_PPV_ARGS(adapter.ReleaseAndGetAddressOf()))))
+		{
+			throw std::exception("WARP12 not available. Enable the 'Graphics Tools' optional feature");
+		}
+
+		OutputDebugStringA("Direct3D Adapter - WARP12\n");
+	}
+#endif
+
+#if !defined(_DEBUG)
 	if (!adapter)
 	{
 		// Try WARP12 instead
@@ -794,6 +780,7 @@ void DeviceResources12::GetAdapter(IDXGIAdapter1** ppAdapter)
 	}
 
 	*ppAdapter = adapter.Detach();
+	
 }
 
 // Sets the color space for the swap chain in order to handle HDR output.
@@ -807,7 +794,7 @@ void DeviceResources12::UpdateColorSpace()
 	if (m_swapChain)
 	{
 		ComPtr<IDXGIOutput> output;
-		if (SUCCEEDED(m_swapChain->GetContainingOutput(&output)))
+		if (SUCCEEDED(m_swapChain->GetContainingOutput(output.GetAddressOf())))
 		{
 			ComPtr<IDXGIOutput6> output6;
 			if (SUCCEEDED(output.As(&output6)))
