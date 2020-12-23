@@ -120,7 +120,7 @@ namespace
         XAUDIO2FX_I3DL2_PRESET_LARGEROOM,           // Reverb_LargeRoom
         XAUDIO2FX_I3DL2_PRESET_MEDIUMHALL,          // Reverb_MediumHall
         XAUDIO2FX_I3DL2_PRESET_LARGEHALL,           // Reverb_LargeHall
-        XAUDIO2FX_I3DL2_PRESET_PLATE,               // Reverb_Plate
+        XAUDIO2FX_I3DL2_PRESET_PLATE                // Reverb_Plate
     };
 
     inline unsigned int makeVoiceKey(_In_ const WAVEFORMATEX* wfx)
