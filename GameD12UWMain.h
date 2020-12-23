@@ -3,6 +3,7 @@
 #include "Common/DeviceResources12.h"
 #include "Common/StepTimer.h"
 
+using namespace Windows::Foundation;
 
 // A basic game implementation that creates a D3D12 device and
 // provides a game loop.
