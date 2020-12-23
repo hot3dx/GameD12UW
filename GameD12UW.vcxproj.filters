@@ -79,7 +79,7 @@
     <AppxManifest Include="Package.appxmanifest" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="GameD12UW.vstemplate" />
     <None Include="Assets\ADPCMdroid.xwb">
       <Filter>Assets</Filter>
     </None>
@@ -89,12 +89,13 @@
     <None Include="Assets\tiny.sdkmesh">
       <Filter>Assets</Filter>
     </None>
-    <None Include="LICENSE" />
-    <None Include="README.md" />
-    <None Include="GameD12UWDR.vstemplate" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\__TemplateIcon.ico">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\GameD12UW.png">
       <Filter>Assets</Filter>
     </Image>
     <Image Include="Assets\Logo.png">
@@ -122,9 +123,6 @@
       <Filter>Assets</Filter>
     </Image>
     <Image Include="Assets\windowslogo.dds">
-      <Filter>Assets</Filter>
-    </Image>
-    <Image Include="Assets\GamD12UW.png">
       <Filter>Assets</Filter>
     </Image>
   </ItemGroup>

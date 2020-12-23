@@ -3,6 +3,7 @@
 //
 // Header for standard system include files.
 //
+// ATG Dependence is removed in this
 // Advanced Technology Group (ATG)
 // Copyright (C) Microsoft Corporation. All rights reserved.
 //--------------------------------------------------------------------------------------
@@ -11,6 +12,9 @@
 
 // Use the C++ standard templated min/max
 #define NOMINMAX
+#include <windows.h>
+#include <handleapi.h>
+#include <combaseapi.h>
 
 #include <wrl.h>
 
@@ -36,25 +40,25 @@
 #include <dxgidebug.h>
 #endif
 
-#include "DirectXTK12/Inc/Audio.h"
-#include "DirectXTK12/Inc/CommonStates.h"
-#include "DirectXTK12/Inc/DirectXHelpers.h"
-#include "DirectXTK12/Inc/DDSTextureLoader.h"
-#include "DirectXTK12/Inc/DescriptorHeap.h"
-#include "DirectXTK12/Inc/Effects.h"
-#include "DirectXTK12/Inc/Gamepad.h"
-#include "DirectXTK12/Inc/GeometricPrimitive.h"
-#include "DirectXTK12/Inc/GraphicsMemory.h"
-#include "DirectXTK12/Inc/Keyboard.h"
-#include "DirectXTK12/Inc/Model.h"
-#include "DirectXTK12/Inc/Mouse.h"
-#include "DirectXTK12/Inc/PrimitiveBatch.h"
-#include "DirectXTK12/Inc/ResourceUploadBatch.h"
-#include "DirectXTK12/Inc/RenderTargetState.h"
-#include "DirectXTK12/Inc/SimpleMath.h"
-#include "DirectXTK12/Inc/SpriteBatch.h"
-#include "DirectXTK12/Inc/SpriteFont.h" 
-#include "DirectXTK12/Inc/VertexTypes.h"
+#include "Audio.h"
+#include "CommonStates.h"
+#include "DirectXHelpers.h"
+#include "DDSTextureLoader.h"
+#include "DescriptorHeap.h"
+#include "Effects.h"
+#include "Gamepad.h"
+#include "GeometricPrimitive.h"
+#include "GraphicsMemory.h"
+#include "Keyboard.h"
+#include "Model.h"
+#include "Mouse.h"
+#include "PrimitiveBatch.h"
+#include "ResourceUploadBatch.h"
+#include "RenderTargetState.h"
+#include "SimpleMath.h"
+#include "SpriteBatch.h"
+#include "SpriteFont.h" 
+#include "VertexTypes.h"
 
 namespace DX
 {

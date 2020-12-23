@@ -3,6 +3,7 @@
 //
 // Entry point for Universal Windows Platform (UWP) app.
 //
+// ATG is removed from this by me - Jeff Kubitz
 // Advanced Technology Group (ATG)
 // Copyright (C) Microsoft Corporation. All rights reserved.
 //--------------------------------------------------------------------------------------
@@ -11,7 +12,6 @@
 #include "GameD12UWMain.h"
 
 #include <ppltasks.h>
-
 
 using namespace concurrency;
 using namespace Windows::ApplicationModel;
@@ -62,26 +62,7 @@ public:
 
 		m_audioWatcher->Start();
 
-		// Sample Usage Telemetry
-		//
-		// Disable or remove this code block to opt-out of sample usage telemetry
-		//
-		/*
-		if (ATG::EventRegisterATGSampleTelemetry() == ERROR_SUCCESS)
-		{
-			wchar_t exeName[MAX_PATH + 1] = {};
-			if (!GetModuleFileNameW(nullptr, exeName, MAX_PATH))
-			{
-				wcscpy_s(exeName, L"Unknown");
-			}
-			wchar_t fname[_MAX_FNAME] = {};
-			wchar_t ext[_MAX_EXT] = {};
-			(void)_wsplitpath_s(exeName, nullptr, 0, nullptr, 0, fname, _MAX_FNAME, ext, _MAX_EXT);
-			(void)_wmakepath_s(exeName, nullptr, nullptr, fname, ext); // keep only the filename + extension
-
-			ATG::EventWriteSampleLoaded(exeName);
-		}
-		*/
+		
 	}
 
 	virtual void Uninitialize()
@@ -157,7 +138,7 @@ public:
 		m_sample->Initialize((window),
 				outputWidth, outputHeight, rotation);
 
-		//Mouse::SetDpi(m_DPI);
+		Mouse::SetDpi(m_DPI);
 	}
 
 	virtual void Load(Platform::String^ entryPoint)
@@ -446,11 +427,12 @@ public:
 [Platform::MTAThread]
 int __cdecl main(Platform::Array<Platform::String^>^ /*argv*/)
 {
+	
 	if (!XMVerifyCPUSupport())
 	{
 		throw std::exception("XMVerifyCPUSupport");
 	}
-
+	
 	auto viewProviderFactory = ref new ViewProviderFactory();
 	CoreApplication::Run(viewProviderFactory);
 	return 0;

@@ -1,0 +1,82 @@
+
+	// Create the Direct3D 12 API device object
+	HRESULT hr = D3D12CreateDevice(
+		adapter.Get(),					// The hardware adapter.
+		D3D_FEATURE_LEVEL_11_0,			// Minimum feature level this app can support.
+		IID_PPV_ARGS(&m_d3d12Device)		// Returns the Direct3D device created.
+	);
+
+	// Since I use Warp, I have Moved it into the device check. The debug statement below can be used
+	// if you don't use Warp
+
+	if (FAILED(hr))
+	{
+		// If the initialization fails, fall back to the WARP device.
+
+		Microsoft::WRL::ComPtr<IDXGIAdapter> warpAdapter;
+		DX::ThrowIfFailed(m_dxgiFactory4->EnumWarpAdapter(IID_PPV_ARGS(&warpAdapter)));
+
+		hr = D3D12CreateDevice(warpAdapter.Get(), D3D_FEATURE_LEVEL_11_0, IID_PPV_ARGS(&m_d3d12Device));
+	}
+	// This array defines the set of DirectX hardware feature levels this app will support.
+	// Note the ordering should be preserved.
+	// Don't forget to declare your application's minimum required feature level in its
+	// description.  All applications are assumed to support 9.1 unless otherwise stated.
+	D3D_FEATURE_LEVEL featureLevels[] = 
+	{
+		D3D_FEATURE_LEVEL_11_1,
+		D3D_FEATURE_LEVEL_11_0,
+		D3D_FEATURE_LEVEL_10_1,
+		D3D_FEATURE_LEVEL_10_0,
+		D3D_FEATURE_LEVEL_9_3//,
+		//D3D_FEATURE_LEVEL_9_2,
+		//D3D_FEATURE_LEVEL_9_1
+	};
+
+	// Create the Direct3D 11 API device object and a corresponding context.
+	ComPtr<ID3D11Device> device;
+	ComPtr<ID3D11DeviceContext> context;
+
+	
+	 hr = D3D11CreateDevice(
+		nullptr,					// Specify nullptr to use the default adapter.
+		D3D_DRIVER_TYPE_HARDWARE,	// Create a device using the hardware graphics driver.
+		0,							// Should be 0 unless the driver is D3D_DRIVER_TYPE_SOFTWARE.
+		creationFlags,				// Set debug and Direct2D compatibility flags.
+		featureLevels,				// List of feature levels this app can support.
+		ARRAYSIZE(featureLevels),	// Size of the list above.
+		D3D11_SDK_VERSION,			// Always set this to D3D11_SDK_VERSION for Windows Store apps.
+		&device,					// Returns the Direct3D device created.
+		&m_d3dFeatureLevel,			// Returns feature level of device created.
+		&context					// Returns the device immediate context.
+		);
+
+	if (FAILED(hr))
+	{
+		// If the initialization fails, fall back to the WARP device.
+		// For more information on WARP, see: 
+		// http://go.microsoft.com/fwlink/?LinkId=286690
+		DX::ThrowIfFailed(
+			D3D11CreateDevice(
+				nullptr,
+				D3D_DRIVER_TYPE_WARP, // Create a WARP device instead of a hardware device.
+				0,
+				creationFlags,
+				featureLevels,
+				ARRAYSIZE(featureLevels),
+				D3D11_SDK_VERSION,
+				&device,
+				&m_d3dFeatureLevel,
+				&context
+				)
+			);
+	}
+
+	// Store pointers to the Direct3D 11.1 API device and immediate context.
+	DX::ThrowIfFailed(
+		device.As(&m_d3dDevice)
+		);
+
+	DX::ThrowIfFailed(
+		context.As(&m_d3dContext)
+		);
