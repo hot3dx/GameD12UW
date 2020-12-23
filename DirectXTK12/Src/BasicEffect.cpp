@@ -198,7 +198,7 @@ const D3D12_SHADER_BYTECODE EffectBase<BasicEffectTraits>::VertexShaderBytecode[
     { BasicEffect_VSBasicPixelLightingBn,      sizeof(BasicEffect_VSBasicPixelLightingBn)      },
     { BasicEffect_VSBasicPixelLightingVcBn,    sizeof(BasicEffect_VSBasicPixelLightingVcBn)    },
     { BasicEffect_VSBasicPixelLightingTxBn,    sizeof(BasicEffect_VSBasicPixelLightingTxBn)    },
-    { BasicEffect_VSBasicPixelLightingTxVcBn,  sizeof(BasicEffect_VSBasicPixelLightingTxVcBn)  },
+    { BasicEffect_VSBasicPixelLightingTxVcBn,  sizeof(BasicEffect_VSBasicPixelLightingTxVcBn)  }
 };
 
 
@@ -248,7 +248,7 @@ const int EffectBase<BasicEffectTraits>::VertexShaderIndices[] =
     22,     // pixel lighting (biased vertex normals) + texture
     22,     // pixel lighting (biased vertex normals) + texture, no fog
     23,     // pixel lighting (biased vertex normals) + texture + vertex color
-    23,     // pixel lighting (biased vertex normals) + texture + vertex color, no fog
+    23     // pixel lighting (biased vertex normals) + texture + vertex color, no fog
 };
 
 
@@ -266,7 +266,7 @@ const D3D12_SHADER_BYTECODE EffectBase<BasicEffectTraits>::PixelShaderBytecode[]
     { BasicEffect_PSBasicVertexLightingTxNoFog, sizeof(BasicEffect_PSBasicVertexLightingTxNoFog) },
 
     { BasicEffect_PSBasicPixelLighting,         sizeof(BasicEffect_PSBasicPixelLighting)         },
-    { BasicEffect_PSBasicPixelLightingTx,       sizeof(BasicEffect_PSBasicPixelLightingTx)       },
+    { BasicEffect_PSBasicPixelLightingTx,       sizeof(BasicEffect_PSBasicPixelLightingTx)       }
 };
 
 
@@ -316,7 +316,7 @@ const int EffectBase<BasicEffectTraits>::PixelShaderIndices[] =
     9,      // pixel lighting (biased vertex normals) + texture
     9,      // pixel lighting (biased vertex normals) + texture, no fog
     9,      // pixel lighting (biased vertex normals) + texture + vertex color
-    9,      // pixel lighting (biased vertex normals) + texture + vertex color, no fog
+    9      // pixel lighting (biased vertex normals) + texture + vertex color, no fog
 };
 
 // Global pool of per-device BasicEffect resources.

@@ -93,7 +93,7 @@ namespace Bezier
 
             for (size_t j = 0; j <= tessellation; j++)
             {
-                float v = float(j) / tessellation;
+                float v = float(j) / float(tessellation);
 
                 // Perform four horizontal bezier interpolations
                 // between the control points of this patch.

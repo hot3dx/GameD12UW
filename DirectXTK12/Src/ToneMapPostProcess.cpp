@@ -97,16 +97,16 @@ namespace
         { ToneMap_PSSaturate_SRGB,          sizeof(ToneMap_PSSaturate_SRGB) },
         { ToneMap_PSReinhard_SRGB,          sizeof(ToneMap_PSReinhard_SRGB) },
         { ToneMap_PSACESFilmic_SRGB,        sizeof(ToneMap_PSACESFilmic_SRGB) },
-        { ToneMap_PSHDR10,                  sizeof(ToneMap_PSHDR10) },
+        { ToneMap_PSHDR10,                  sizeof(ToneMap_PSHDR10) }
 
 #if defined(_XBOX_ONE) && defined(_TITLE)
         // Shaders that generate both HDR10 and GameDVR SDR signals via Multiple Render Targets.
-        { ToneMap_PSHDR10_Saturate,         sizeof(ToneMap_PSHDR10_Saturate) },
+        ,{ ToneMap_PSHDR10_Saturate,         sizeof(ToneMap_PSHDR10_Saturate) },
         { ToneMap_PSHDR10_Reinhard,         sizeof(ToneMap_PSHDR10_Reinhard) },
         { ToneMap_PSHDR10_ACESFilmic,       sizeof(ToneMap_PSHDR10_ACESFilmic) },
         { ToneMap_PSHDR10_Saturate_SRGB,    sizeof(ToneMap_PSHDR10_Saturate_SRGB) },
         { ToneMap_PSHDR10_Reinhard_SRGB,    sizeof(ToneMap_PSHDR10_Reinhard_SRGB) },
-        { ToneMap_PSHDR10_ACESFilmic_SRGB,  sizeof(ToneMap_PSHDR10_ACESFilmic_SRGB) },
+        { ToneMap_PSHDR10_ACESFilmic_SRGB,  sizeof(ToneMap_PSHDR10_ACESFilmic_SRGB) }
 #endif
     };
 
@@ -130,11 +130,11 @@ namespace
         8,  // HDR10
         8,  // HDR10
         8,  // HDR10
-        8,  // HDR10
+        8  // HDR10
 
 #if defined(_XBOX_ONE) && defined(_TITLE)
         // MRT Linear EOTF
-        9,  // HDR10+Saturate
+       , 9,  // HDR10+Saturate
         9,  // HDR10+Saturate
         10, // HDR10+Reinhard
         11, // HDR10+ACESFilmic
@@ -149,7 +149,7 @@ namespace
         9,  // HDR10+Saturate
         9,  // HDR10+Saturate
         10, // HDR10+Reinhard
-        11, // HDR10+ACESFilmic
+        11 // HDR10+ACESFilmic
 #endif
     };
 

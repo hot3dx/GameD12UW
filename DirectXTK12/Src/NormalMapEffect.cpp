@@ -130,7 +130,7 @@ const D3D12_SHADER_BYTECODE EffectBase<NormalMapEffectTraits>::VertexShaderBytec
     { NormalMapEffect_VSNormalPixelLightingTxVcNoSpec,   sizeof(NormalMapEffect_VSNormalPixelLightingTxVcNoSpec)   },
 
     { NormalMapEffect_VSNormalPixelLightingTxNoSpecBn,   sizeof(NormalMapEffect_VSNormalPixelLightingTxNoSpecBn)   },
-    { NormalMapEffect_VSNormalPixelLightingTxVcNoSpecBn, sizeof(NormalMapEffect_VSNormalPixelLightingTxVcNoSpecBn) },
+    { NormalMapEffect_VSNormalPixelLightingTxVcNoSpecBn, sizeof(NormalMapEffect_VSNormalPixelLightingTxVcNoSpecBn) }
 };
 
 
@@ -155,7 +155,7 @@ const int EffectBase<NormalMapEffectTraits>::VertexShaderIndices[] =
     6,     // pixel lighting (biased vertex normal) + texture, no specular
     6,     // pixel lighting (biased vertex normal) + texture, no fog or specular
     7,     // pixel lighting (biased vertex normal) + texture + vertex color, no specular
-    7,     // pixel lighting (biased vertex normal) + texture + vertex color, no fog or specular
+    7     // pixel lighting (biased vertex normal) + texture + vertex color, no fog or specular
 };
 
 
@@ -165,7 +165,7 @@ const D3D12_SHADER_BYTECODE EffectBase<NormalMapEffectTraits>::PixelShaderByteco
     { NormalMapEffect_PSNormalPixelLightingTx,          sizeof(NormalMapEffect_PSNormalPixelLightingTx)          },
     { NormalMapEffect_PSNormalPixelLightingTxNoFog,     sizeof(NormalMapEffect_PSNormalPixelLightingTxNoFog)     },
     { NormalMapEffect_PSNormalPixelLightingTxNoSpec,    sizeof(NormalMapEffect_PSNormalPixelLightingTxNoSpec)    },
-    { NormalMapEffect_PSNormalPixelLightingTxNoFogSpec, sizeof(NormalMapEffect_PSNormalPixelLightingTxNoFogSpec) },
+    { NormalMapEffect_PSNormalPixelLightingTxNoFogSpec, sizeof(NormalMapEffect_PSNormalPixelLightingTxNoFogSpec) }
 };
 
 
@@ -190,7 +190,7 @@ const int EffectBase<NormalMapEffectTraits>::PixelShaderIndices[] =
     2,     // pixel lighting (biased vertex normal) + texture, no specular
     3,     // pixel lighting (biased vertex normal) + texture, no fog or specular
     2,     // pixel lighting (biased vertex normal) + texture + vertex color, no specular
-    3,     // pixel lighting (biased vertex normal) + texture + vertex color, no fog or specular
+    3     // pixel lighting (biased vertex normal) + texture + vertex color, no fog or specular
 };
 
 // Global pool of per-device NormalMapEffect resources.

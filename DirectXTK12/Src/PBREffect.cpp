@@ -123,7 +123,7 @@ const D3D12_SHADER_BYTECODE EffectBase<PBREffectTraits>::VertexShaderBytecode[] 
     { PBREffect_VSConstant, sizeof(PBREffect_VSConstant) },
     { PBREffect_VSConstantVelocity, sizeof(PBREffect_VSConstantVelocity) },
     { PBREffect_VSConstantBn, sizeof(PBREffect_VSConstantBn) },
-    { PBREffect_VSConstantVelocityBn, sizeof(PBREffect_VSConstantVelocityBn) },
+    { PBREffect_VSConstantVelocityBn, sizeof(PBREffect_VSConstantVelocityBn) }
 };
 
 
@@ -140,7 +140,7 @@ const int EffectBase<PBREffectTraits>::VertexShaderIndices[] =
     2,      // textured (biased vertex normals)
     2,      // textured + emissive (biased vertex normals)
     3,      // textured + velocity (biased vertex normals)
-    3,      // textured + emissive + velocity (biasoed vertex normals)
+    3      // textured + emissive + velocity (biasoed vertex normals)
 };
 
 
@@ -168,7 +168,7 @@ const int EffectBase<PBREffectTraits>::PixelShaderIndices[] =
     1,      // textured (biased vertex normals)
     2,      // textured + emissive (biased vertex normals)
     3,      // textured + velocity (biased vertex normals)
-    4,      // textured + emissive + velocity (biased vertex normals)
+    4      // textured + emissive + velocity (biased vertex normals)
 };
 
 // Global pool of per-device PBREffect resources. Required by EffectBase<>, but not used.
@@ -236,7 +236,7 @@ PBREffect::Impl::Impl(_In_ ID3D12Device* device,
             CD3DX12_DESCRIPTOR_RANGE(D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 2),
             CD3DX12_DESCRIPTOR_RANGE(D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 3),
             CD3DX12_DESCRIPTOR_RANGE(D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 4),
-            CD3DX12_DESCRIPTOR_RANGE(D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 5),
+            CD3DX12_DESCRIPTOR_RANGE(D3D12_DESCRIPTOR_RANGE_TYPE_SRV, 1, 5)
         };
 
         CD3DX12_DESCRIPTOR_RANGE textureSampler[2] = {

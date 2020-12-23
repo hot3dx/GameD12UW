@@ -14,6 +14,7 @@
 
 #include <exception>
 #include <memory>
+#include <handleapi.h>
 
 #ifndef MAKEFOURCC
     #define MAKEFOURCC(ch0, ch1, ch2, ch3) \

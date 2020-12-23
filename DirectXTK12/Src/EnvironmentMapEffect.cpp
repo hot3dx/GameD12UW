@@ -136,7 +136,7 @@ const D3D12_SHADER_BYTECODE EffectBase<EnvironmentMapEffectTraits>::VertexShader
 
     { EnvironmentMapEffect_VSEnvMapBn,              sizeof(EnvironmentMapEffect_VSEnvMapBn)              },
     { EnvironmentMapEffect_VSEnvMapFresnelBn,       sizeof(EnvironmentMapEffect_VSEnvMapFresnelBn)       },
-    { EnvironmentMapEffect_VSEnvMapPixelLightingBn, sizeof(EnvironmentMapEffect_VSEnvMapPixelLightingBn) },
+    { EnvironmentMapEffect_VSEnvMapPixelLightingBn, sizeof(EnvironmentMapEffect_VSEnvMapPixelLightingBn) }
 };
 
 
@@ -169,7 +169,7 @@ const int EffectBase<EnvironmentMapEffectTraits>::VertexShaderIndices[] =
     5,      // pixel lighting (biased vertex normals)
     5,      // pixel lighting (biased vertex normals), no fog
     5,      // pixel lighting (biased vertex normals), fresnel
-    5,      // pixel lighting (biased vertex normals), fresnel, no fog
+    5      // pixel lighting (biased vertex normals), fresnel, no fog
 };
 
 
@@ -183,7 +183,7 @@ const D3D12_SHADER_BYTECODE EffectBase<EnvironmentMapEffectTraits>::PixelShaderB
     { EnvironmentMapEffect_PSEnvMapPixelLighting,             sizeof(EnvironmentMapEffect_PSEnvMapPixelLighting)             },
     { EnvironmentMapEffect_PSEnvMapPixelLightingNoFog,        sizeof(EnvironmentMapEffect_PSEnvMapPixelLightingNoFog)        },
     { EnvironmentMapEffect_PSEnvMapPixelLightingFresnel,      sizeof(EnvironmentMapEffect_PSEnvMapPixelLightingFresnel)      },
-    { EnvironmentMapEffect_PSEnvMapPixelLightingFresnelNoFog, sizeof(EnvironmentMapEffect_PSEnvMapPixelLightingFresnelNoFog) },
+    { EnvironmentMapEffect_PSEnvMapPixelLightingFresnelNoFog, sizeof(EnvironmentMapEffect_PSEnvMapPixelLightingFresnelNoFog) }
 };
 
 
@@ -216,7 +216,7 @@ const int EffectBase<EnvironmentMapEffectTraits>::PixelShaderIndices[] =
     4,      // per pixel lighting (biased vertex normals)
     5,      // per pixel lighting (biased vertex normals), no fog
     6,      // per pixel lighting (biased vertex normals), fresnel
-    7,      // per pixel lighting (biased vertex normals), fresnel, no fog
+    7      // per pixel lighting (biased vertex normals), fresnel, no fog
 };
 
 
